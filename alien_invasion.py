@@ -14,6 +14,9 @@ class AlienInvasion:
 
         self.screen = pygame.display.set_mode((1200,800))
         pygame.display.set_caption("Alien Invasion")
+
+        # configurando a cor de fundo
+        self.bg_color = (230,230,230)
     
     def run_game(self):
         """
@@ -24,6 +27,9 @@ class AlienInvasion:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
+            
+            # redesenha a tela durante casa passagem de loop
+            self.screen.fill(self.bg_color)
             
             # Torna o desenho de tela mais recente visível.
             pygame.display.flip()
