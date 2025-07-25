@@ -1,4 +1,4 @@
-class Seetings:
+class Settings:
     """Classe que armazena toda a configuração do jogo Alien Invasion."""
 
     def __init__(self):
