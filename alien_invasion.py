@@ -12,9 +12,9 @@ class AlienInvasion:
         """
         Inicializa o jogo e cria os recursos do jogo.
         """
-        pygame.init()
-        self.clock = pygame.time.Clock()
-        self.settings = Settings()
+        pygame.init() # liga o motor do jogo
+        self.clock = pygame.time.Clock() # cria um relógio para controlar a taxa de frames do jogo
+        self.settings = Settings() # cria uma instância de configurações no jogo
 
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Alien Invasion")
@@ -26,18 +26,23 @@ class AlienInvasion:
         Inicia o loop principal do jogo.
         """
         while True:
-            # Observa os eventos de mouse e teclado.
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
-            
-            # limpa a tela durante casa passagem de loop
-            self.screen.fill(self.settings.bg_color)
-            self.ship.blitme()
-            
-            # Torna o desenho de tela mais recente visível.
-            pygame.display.flip()
+            self._check_events()
+            self._update_screen()
+    
             self.clock.tick(60)
+
+    def _check_events(self):
+        """Responde a eventos de teclado e mouse."""
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+
+    def _update_screen(self):
+        """Atualiza imagens na tela, e torna tudo visível."""
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
+
+        pygame.display.flip()
 
 if __name__ == '__main__':
     # Cria uma instância e roda o jogo.
